@@ -105,6 +105,7 @@ export default function Login() {
                             label="password" 
                             variant="outlined" 
                             type="password"
+                            autoComplete="current-password"
                             name="password"
                             value={loginObj.password}
                             onChange={inputChange}

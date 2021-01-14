@@ -177,7 +177,7 @@ export default function PrimarySearchAppBar({currentUser, currentUserData}: curr
               </Link>
             </Tooltip>
           </IconButton>
-          <Tooltip title="new account" aria-aria-label="new account">
+          <Tooltip title="new account" aria-label="new account">
             <Link to="/user" className={classes.appBarLinkBlack}>New Account</Link>
           </Tooltip>
         </MenuItem>

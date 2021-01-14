@@ -18,11 +18,6 @@ interface Props {
     currentUser: boolean,
     currentUserData: any
 }
-
-interface LoginProps {
-    username: string,
-    password: string
-}
    
 //STYLES
 const useStyles = makeStyles((theme: Theme) =>
@@ -78,11 +73,6 @@ export default function Sup({currentUser, currentUserData}: Props){
         newsData:"",
         //TODO: add in newstype in form
         // mood:""
-    })
-
-    const [loginObj, setLoginObject] = useState<LoginProps>({
-        username:"",
-        password:""
     })
 
 

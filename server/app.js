@@ -162,12 +162,11 @@ app.use(
     }) 
     .then( (news) =>{
       console.log('app.js news', news)
-      res.json(news)
       if(!news) {
         res.status(404).send('data not found');
       } else {
         news.newsData = req.body.newsData;
-         news.save()
+        news.save()
         .then(news =>{
           res.json(news)
         })
