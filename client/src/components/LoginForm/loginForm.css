@@ -1,0 +1,24 @@
+.login-bubble {
+    background-color: #e6d1cf;
+    border: 10px solid #d2a295;
+    border-radius: 20px;
+    padding: 20px;
+    position: relative;
+    margin-top: 100px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.login-bubble .login-arrow {
+    border-style: solid;
+    position: absolute;
+}
+ 
+.login-bottom {
+    border-color: #d2a295 transparent transparent transparent;
+    border-width: 16px 16px 0px 16px;
+    bottom: -20px;
+}
+
+.login {
+    margin-top: 1px
+}

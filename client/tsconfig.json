@@ -1,0 +1,28 @@
+// TSConfig file in a directory indicates that the directory is the root of a TypeScript
+{
+  "compilerOptions": {
+    "target": "es5",//specify ECMAScript target version
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true, //allow a partial TypeScript and JavaScript codebase
+    "skipLibCheck": true, //type checking of all declaration files (*.d.ts)
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true, //Allow default imports from modules with no default export. This does not affect code emit, just typechecking.
+    "strict": true,
+    "forceConsistentCasingInFileNames": true, //Allow  inconsistently-cased references to the same file.
+    "noFallthroughCasesInSwitch": true, //Do no Report errors for fallthrough cases in switch statement.
+    "module": "esnext",
+    "moduleResolution": "node", //Determine how modules get resolved. Either "Node" for Node.js/io.js style resolution
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true, //emit outputs
+    "jsx": "react-jsx", //support jsx in .tsx files
+    "sourceMap": true //allow sourcemap support
+  },
+  "include": [
+    "src"
+  ]
+}

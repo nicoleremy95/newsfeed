@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto&display=swap');
+body {
+  margin: 0;
+  font-family: 'Pacifico', cursive;
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+h1 {
+  font-family: 'Pacifico', cursive;
+}
+
+h2 {
+  font-family: 'Pacifico', cursive;
+}
+
+h3 {
+  font-family: 'Pacifico', cursive;
+}
+
+p {
+  font-family: 'Roboto', sans-serif;
+}

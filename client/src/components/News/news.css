@@ -1,0 +1,25 @@
+.news-bubble {
+    background-color: #a5aaab;
+    border: 10px solid #7a8a8a;
+    border-radius: 20px;
+    padding: 20px;
+    position: relative;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.news-bubble .news-arrow {
+    border-style: solid;
+    position: absolute;
+}
+ 
+.news-bottom {
+    border-color: #7a8a8a transparent transparent transparent;
+    border-width: 16px 16px 0px 16px;
+    bottom: -20px;
+}
+
+.news {
+    margin-top: 1px
+}
