@@ -8,6 +8,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 import API from '../../utils/API';
 
 //INTERFACE 
@@ -173,16 +174,32 @@ export default function PrimarySearchAppBar({currentUser, currentUserData}: curr
           >
             <Tooltip title="New Account" aria-label="New Account">
               <Link to="/user" className={classes.appBarLinkBlack}>
-                <AccountCircle/>
+                <AddCircleIcon/>
               </Link>
             </Tooltip>
           </IconButton>
           <Tooltip title="new account" aria-label="new account">
-            <Link to="/user" className={classes.appBarLinkBlack}>New Account</Link>
+            <Link to="/new-account" className={classes.appBarLinkBlack}>New Account</Link>
           </Tooltip>
         </MenuItem>
       : null}
       {currentUser? 
+      <div>
+        <MenuItem>
+          <IconButton
+            aria-label="my account"
+            aria-controls={menuId}
+            aria-haspopup="true"
+            color="inherit"
+          >
+            <Tooltip title="My Account" aria-label="My Account">
+              <Link to="/account">
+                <AccountCircle/>
+              </Link>
+            </Tooltip>
+          </IconButton>
+          <p>My Account</p>
+        </MenuItem>
         <MenuItem>
           <IconButton
             aria-label="logout"
@@ -191,11 +208,12 @@ export default function PrimarySearchAppBar({currentUser, currentUserData}: curr
             color="inherit"
           >
             <Tooltip title="Logout" aria-label="Logout">
-              <ExitToAppIcon onClick={logOut}/>
+                <ExitToAppIcon onClick={logOut}/>
             </Tooltip>
           </IconButton>
           <p>Logout</p>
         </MenuItem> 
+        </div>
         : 
         <MenuItem>
         <IconButton
@@ -249,11 +267,17 @@ export default function PrimarySearchAppBar({currentUser, currentUserData}: curr
             >
             {!currentUser? 
               <Tooltip title="New Account" aria-label="New Account">
-                <Link to="/user" className={classes.appBarLinkWhite}>
+                <Link to="/new-account" className={classes.appBarLinkWhite}>
+                  <AddCircleIcon/>
+                </Link>
+              </Tooltip>
+            : 
+              <Tooltip title="My Account" aria-label="My Account">
+                <Link to="/account" className={classes.appBarLinkWhite}>
                   <AccountCircle/>
                 </Link>
               </Tooltip>
-            : null}
+            }
               
             </IconButton>
             {currentUser?   

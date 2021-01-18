@@ -87,7 +87,7 @@ app.use(
     });
   })
 
-  //Get all news in database, PASSED POSTMAN TEST: PASSED
+  //Get news by id in database, PASSED POSTMAN TEST: PASSED
   app.get('/news/:newsId', (req, res) =>{
     db.News.findOne({_id:req.params.newsId})
     .populate("userId", "username email")

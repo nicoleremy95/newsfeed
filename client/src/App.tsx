@@ -47,7 +47,7 @@ function App(){
           <Route exact path = '/'>
             <Home currentUser={currentUser} currentUserData={currentUserData}/>
           </Route>
-          <Route exact path = '/user'>
+          <Route exact path = '/new-account'>
             <User />
           </Route>
           <Route exact path = '/login'>

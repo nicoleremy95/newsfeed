@@ -134,6 +134,10 @@ export default function News({newsDB, currentUser, currentUserData}: Props) : JS
                 >
                   <h3 className={classes.newsName}> ~{newsDB[i].userId.username}</h3>
                 </Typography>
+                <Typography>
+                  <h4>{newsDB[i].createdAt}</h4>
+                </Typography>
+
               </CardContent>
               <div
                 className="News-cards-comment"
