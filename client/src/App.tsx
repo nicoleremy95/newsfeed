@@ -5,6 +5,7 @@ import Home from './pages/Home/Home';
 import User from './pages/User/User';
 import Login from './pages/Login/Login';
 import Appbar from './components/Appbar/Appbar';
+import Account from './pages/Account/Account'
 import Footer from './components/Footer/Footer';
 import './App.css';
 import API from './utils/API';
@@ -51,6 +52,9 @@ function App(){
           </Route>
           <Route exact path = '/login'>
             <Login/>
+          </Route>
+          <Route exact path = '/account'>
+            <Account currentUser={currentUser} currentUserData={currentUserData}/>
           </Route>
         </Switch>
         <Footer/>

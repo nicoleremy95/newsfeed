@@ -88,7 +88,7 @@ export default function Sup({currentUser, currentUserData}: Props){
     function inputSubmit (e: React.FormEvent<HTMLFormElement>) : boolean { 
         API.postNews(newsObj)
         .then(news =>{
-            console.log('news', news)
+            // console.log('Sup.tsx news', news)
         })
         .catch(err =>console.log('err', err))
         setNewsObj({
@@ -139,7 +139,7 @@ export default function Sup({currentUser, currentUserData}: Props){
                                         onChange={inputChange}
                                         className={classes.input}
                                         inputProps={{
-                                            maxlength: 200
+                                            maxLength: 200
                                         }}
                                         helperText={`${newsObj.newsData.length}/200`}
                                     />

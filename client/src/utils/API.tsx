@@ -17,8 +17,8 @@ const API = {
     postReaction: function(reaction: string, newsId: string){
         return axios.post(`${urlPrefix}/reaction/${newsId}`, reaction, { withCredentials: true })
     },
-    updateNews: function(news: object, newsId: string){
-        return axios.put(`${urlPrefix}/news/${newsId}`, news, { withCredentials: true })
+    updateNews: function(updatedNews: object, newsId: string){
+        return axios.put(`${urlPrefix}/news/${newsId}`, updatedNews, { withCredentials: true })
     },
     deleteNews: function(newsId: string){
         return axios.delete(`${urlPrefix}/news/${newsId}`, {withCredentials: true})
@@ -43,6 +43,9 @@ const API = {
     },
     getNewsById: function(newsId: string){
         return axios.get(`${urlPrefix}/news/${newsId}`)
+    },
+    getNewsbyUser: function(userId: string){
+        return axios.get(`${urlPrefix}/news/${userId}`, {withCredentials: true})
     }
 }
 

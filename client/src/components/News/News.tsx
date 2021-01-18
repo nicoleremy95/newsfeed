@@ -13,7 +13,7 @@ interface Props {
 }
 
 interface Sup {
-  sup: string,
+  newsData: string,
 }
 
 //STYLES 
@@ -66,32 +66,32 @@ export default function News({newsDB, currentUser, currentUserData}: Props) : JS
   //DECLARATIONS 
   const classes = useStyles();
 
-  const [supObj, setSupObj] =useState<Sup>({
-    sup:"",
+  const [updatedNewsData, setUpdatedNewsData] =useState<Sup>({
+    newsData:"",
   })
-
-  // const { title, children, open, setOpen, onConfirm }: any = props;
-
 
   //FUNCTIONS 
   function inputChangeSup(e: React.ChangeEvent<HTMLTextAreaElement>) {
     //TODO: refactor any
     const{ name, value}: any = e.target;
-    setSupObj({ ...supObj,[name]: value})
-  }
+    setUpdatedNewsData({ ...updatedNewsData,[name]: value})
+  };
 
   //TODO: fix function (for some reason removing the newsData all together)
   function inputSubmitSup(e: React.ChangeEvent<HTMLFormElement>): boolean {
-    //TODO: refactor any
-    const id:any = e.target.getAttribute("id")
-    console.log('News.tsx supObj', supObj)
-    API.updateNews(supObj, id)
-    .then(supObj=>{
-      // console.log('News.tsx supObj', supObj)
+    e.preventDefault();
+    // console.log('News.tsx updatedNewsData', updatedNewsData)
+        const id:any = e.target.getAttribute("id");
+        // console.log('News.tsx id', id);
+
+    API.updateNews(updatedNewsData, id)
+    .then(sup =>{
+      // console.log('News.tsx sup went through!', sup)
     })
-    .catch(err =>console.log('err', err))
+    .catch(err => console.log('News.tsx err', err))
     return true;
-  }
+  };
+
   function deleteNews(e: React.ChangeEvent<HTMLFormElement>): boolean {
     // e.preventDefault();
     const id:any = e.target.getAttribute("id")
@@ -101,7 +101,7 @@ export default function News({newsDB, currentUser, currentUserData}: Props) : JS
     })
     .catch(err =>console.log('err', err))
     return true;
-  }
+  };
 
   //DEV
   // console.log('News.tsx newsDB[0]', newsDB[0]);
@@ -111,7 +111,7 @@ export default function News({newsDB, currentUser, currentUserData}: Props) : JS
   const newsArr = [];
   
   for(let i = 0; i < newsDB.length; i ++){
-    console.log('News.tsx newsDB[i].comments.message', newsDB[i].comments.message)
+    // console.log('News.tsx newsDB[i].comments.message', newsDB[i].comments.message)
      newsArr.push(
       <div className="news-bubble">
       <div className="news-arrow news-bottom left"></div>
@@ -138,8 +138,7 @@ export default function News({newsDB, currentUser, currentUserData}: Props) : JS
               <div
                 className="News-cards-comment"
               >
-                {/* //TODO: update form not working */}
-                {/* {newsDB[i].userId.username===currentUserData.username?
+                {newsDB[i].userId.username===currentUserData.username?
                   <form
                     noValidate 
                     className={classes.root}
@@ -155,14 +154,15 @@ export default function News({newsDB, currentUser, currentUserData}: Props) : JS
                       variant="filled"
                       className={classes.textField}
                       type="textarea"
-                      name="sup"
-                      value={supObj.sup}
+                      name="newsData"
+                      value={updatedNewsData.newsData}
                       onChange={inputChangeSup}
                       inputProps={{
-                        maxlength: 200
+                        maxLength: 200
                       }}
-                      helperText={`${supObj.sup.length}/200`}
+                      helperText={`${updatedNewsData.newsData.length}/200`}
                     />
+                    {/* //TODO: Add tooltip */}
                     <Button 
                       variant="contained" 
                       color="primary"  
@@ -173,7 +173,7 @@ export default function News({newsDB, currentUser, currentUserData}: Props) : JS
                     </Button>
 
                   </form>
-                : null} */}
+                : null}
                 {newsDB[i].userId.username===currentUserData.username? 
                   <form  
                     noValidate 

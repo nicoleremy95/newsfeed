@@ -74,6 +74,19 @@ app.use(
     });
   })
 
+  //Get news by user id , PASSED POSTMAN TEST; PASSED 
+  app.get('/news/:userId', (req,res) =>{
+    db.News.find({userId:req.params.userId})
+    .populate("user, username")
+    .then(user=>{
+      res.json(user)
+    })
+    .catch((err) =>{
+      console.log('err', err);
+      res.status(500).end();
+    });
+  })
+
   //Get all news in database, PASSED POSTMAN TEST: PASSED
   app.get('/news/:newsId', (req, res) =>{
     db.News.findOne({_id:req.params.newsId})
@@ -341,7 +354,7 @@ app.use(
 
   //read session, PASSED POSTMAN TEST: PASSED 
   app.get('/readsession', (req,res) =>{
-    console.log('req.session.user', req.session.user)
+    console.log('req.session', req.session.user)
     res.json(req.session)
   })
 
