@@ -21,22 +21,36 @@ function App(){
     email: ''
   });
 
+  const [currentUserNewsDB, setCurrentUserNewsDB] = useState([]);
+
   useEffect(()=>{
     API.getCurrentUser()
     .then(res => {
-          // console.log('app.tsx res.data.user.email', res.data.user.email)
+          console.log('App.tsx res.data.user', res.data.user)
           if(!res.data.user){
             setCurrentUser(false);
           } else {
             setCurrentUser(true);
             setCurrentUserData({
               username: res.data.user.username,
-              email: res.data.user.email
+              email: res.data.user.email,
+              userId: res.data.user.id
             })
           }
 
     })
   }, [])
+
+  //TODO: useEffect running non stop with dependency, but issues without it as well 
+  // useEffect(()=>{
+  //   // console.log('Account.tsx currentUserData.userId', currentUserData.userId)
+  //   API.getNewsbyUser(currentUserData.userId)
+  //   .then(res=>{
+  //       // console.log('Account.tsx res', res)
+  //       setCurrentUserNewsDB(res.data);
+  //   })
+  //   .catch(err=>{console.log('err', err)})
+  // }, [])
 
   //RENDER 
   return (
@@ -54,7 +68,7 @@ function App(){
             <Login/>
           </Route>
           <Route exact path = '/account'>
-            <Account currentUser={currentUser} currentUserData={currentUserData}/>
+            <Account currentUserNewsDB={currentUserNewsDB} currentUser={currentUser} currentUserData={currentUserData}/>
           </Route>
         </Switch>
         <Footer/>

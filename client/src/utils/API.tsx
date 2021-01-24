@@ -14,8 +14,11 @@ const API = {
     postComment: function(comment: object, newsId: string){
         return axios.post(`${urlPrefix}/comment/${newsId}`, comment, { withCredentials: true })
     },
-    postReaction: function(reaction: string, newsId: string){
+    postReaction: function(reaction: object, newsId: string){
         return axios.post(`${urlPrefix}/reaction/${newsId}`, reaction, { withCredentials: true })
+    },
+    favoriteNews: function(favorite: object, newsId: string){
+        return axios.post(`${urlPrefix}/favorite/${newsId}`, favorite, {withCredentials: true})
     },
     updateNews: function(updatedNews: object, newsId: string){
         return axios.put(`${urlPrefix}/news/${newsId}`, updatedNews, { withCredentials: true })

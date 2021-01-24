@@ -165,6 +165,36 @@ app.use(
     }
   })
 
+  //Add favorite to news, PASSED POSTMAN TEST: PASSED
+  app.post('/favorite/:newsId', (req,res) =>{
+    if(!req.session.user){
+      res.status(401).send("login required")
+    } else{
+      db.News.findOne({
+        _id: req.params.newsId
+      })
+      .then(news=>{
+        let favoriteHeart = false
+        for(i=0; i<news.favorites.length; i++){
+          if(news.favorites[i].userId.equals(req.session.user.id)){
+            favoriteHeart = true 
+          } 
+        }
+        if(favoriteHeart===false){
+          news.favorites.push({
+            userId: req.session.user.id,
+            favorite: req.body.favorite
+          })
+          news.save()
+          return res.send(true)
+        }
+      })
+      .catch((err) =>{
+        console.log('err', err)
+        res.status(500).end();
+      })
+    }
+  })
   //Update news in the database, PASSED POSTMAN TEST: PASSED
   app.put('/news/:newsId', (req, res) =>{
     if (!req.session.user) {

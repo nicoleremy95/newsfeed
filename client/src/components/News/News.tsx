@@ -2,6 +2,8 @@ import * as React from 'react';
 import {useState} from 'react';
 import {createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import {Container, Card, CardContent, Button, Typography, TextField, Grid} from '@material-ui/core';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import IconButton from '@material-ui/core/IconButton';
 import './news.css'
 import API from '../../utils/API';
 
@@ -14,6 +16,10 @@ interface Props {
 
 interface Sup {
   newsData: string,
+}
+
+interface Reaction {
+  reaction: string
 }
 
 //STYLES 
@@ -70,6 +76,12 @@ export default function News({newsDB, currentUser, currentUserData}: Props) : JS
     newsData:"",
   })
 
+  const [reactionEmoji, setReactionEmoji] =useState<Reaction>({
+    reaction: ""
+  })
+
+  const [favorite, setFavorite] = useState(false)
+
   //FUNCTIONS 
   function inputChangeSup(e: React.ChangeEvent<HTMLTextAreaElement>) {
     //TODO: refactor any
@@ -81,8 +93,8 @@ export default function News({newsDB, currentUser, currentUserData}: Props) : JS
   function inputSubmitSup(e: React.ChangeEvent<HTMLFormElement>): boolean {
     e.preventDefault();
     // console.log('News.tsx updatedNewsData', updatedNewsData)
-        const id:any = e.target.getAttribute("id");
-        // console.log('News.tsx id', id);
+    const id:any = e.target.getAttribute("id");
+    // console.log('News.tsx id', id);
 
     API.updateNews(updatedNewsData, id)
     .then(sup =>{
@@ -91,6 +103,41 @@ export default function News({newsDB, currentUser, currentUserData}: Props) : JS
     .catch(err => console.log('News.tsx err', err))
     return true;
   };
+
+  function inputReactionChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
+    //TODO: refactor any
+    const{ name, value}: any = e.target;
+    setReactionEmoji({...reactionEmoji, [name]: value})
+  }; 
+
+  function inputReactionSubmit(e: React.ChangeEvent<HTMLFormElement>) : boolean {
+    e.preventDefault();
+    const id:any = e.target.getAttribute("id");
+    console.log("News.tsx reactionEmoji", reactionEmoji)
+    API.postReaction(reactionEmoji, id)
+    .then(thing=>{
+      console.log('thing', thing)
+    })
+    .catch(err => console.log('News.tsx err', err))
+    return true;
+
+  }
+
+  //TODO: have not tried this on the front end, but backend works
+  function favoriteSubmit(e: React.ChangeEvent<HTMLFormElement>): boolean{
+    e.preventDefault();
+    setFavorite(true);
+    const id:any = e.target.getAttribute("id");
+    const favoriteObj ={
+      heart: favorite
+    };
+    API.favoriteNews(favoriteObj, id)
+    .then(fav=>{
+      console.log('News.tsx fav', fav)
+    })
+    .catch(err => console.log('News.tsx err', err))
+    return true;
+  }
 
   function deleteNews(e: React.ChangeEvent<HTMLFormElement>): boolean {
     // e.preventDefault();
@@ -137,7 +184,26 @@ export default function News({newsDB, currentUser, currentUserData}: Props) : JS
                 <Typography>
                   <h4>{newsDB[i].createdAt}</h4>
                 </Typography>
-
+                <form
+                  noValidate 
+                  className={classes.root}
+                  // onSubmit={inputReactionSubmit}                 
+                  id={newsDB[i]._id}
+                >
+                  <IconButton aria-label="add to favorites">
+                    <FavoriteIcon />
+                  </IconButton>
+                </form>
+                <form
+                  noValidate 
+                  className={classes.root}
+                  onSubmit={inputReactionSubmit}                 
+                  id={newsDB[i]._id}
+                >
+                  <Typography>
+                    <Button type="submit" name="reaction" value="😈">😈</Button>
+                  </Typography>
+                </form>
               </CardContent>
               <div
                 className="News-cards-comment"

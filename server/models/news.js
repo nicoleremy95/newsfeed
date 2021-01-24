@@ -9,6 +9,15 @@ const Reactions = new Schema({
     reaction: String
 }, {timestamps: true})
 
+const Favorites = new Schema({
+    userId: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        required: true,
+      },
+    favorite: Boolean
+}, {timestamps: true})
+
 const News = new Schema({
     newsData : {
         type: String,
@@ -23,7 +32,8 @@ const News = new Schema({
         type: String
     },
     comments: [Comments],
-    reactions: [Reactions]
+    reactions: [Reactions],
+    favorites: [Favorites]
 
 }, {timestamps: true});
 
