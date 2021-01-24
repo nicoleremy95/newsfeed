@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {useState} from 'react';
 import {createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import {Container, Card, CardContent, Button, Typography, TextField, Grid} from '@material-ui/core';
+import {Container, Card, CardContent, Button, Typography, TextField, Grid, Badge} from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import IconButton from '@material-ui/core/IconButton';
 import './news.css'
@@ -129,7 +129,7 @@ export default function News({newsDB, currentUser, currentUserData}: Props) : JS
     setFavorite(true);
     const id:any = e.target.getAttribute("id");
     const favoriteObj ={
-      heart: favorite
+      favorite: favorite
     };
     API.favoriteNews(favoriteObj, id)
     .then(fav=>{
@@ -187,12 +187,16 @@ export default function News({newsDB, currentUser, currentUserData}: Props) : JS
                 <form
                   noValidate 
                   className={classes.root}
-                  // onSubmit={inputReactionSubmit}                 
+                  onSubmit={favoriteSubmit}                 
                   id={newsDB[i]._id}
                 >
-                  <IconButton aria-label="add to favorites">
-                    <FavoriteIcon />
-                  </IconButton>
+                  <IconButton aria-label="add to favorites" color="inherit">
+                    <Badge badgeContent={newsDB[i].favorites.length} color="secondary">
+                      <Button type="submit">
+                        <FavoriteIcon />
+                      </Button>
+                    </Badge>
+                </IconButton>
                 </form>
                 <form
                   noValidate 
